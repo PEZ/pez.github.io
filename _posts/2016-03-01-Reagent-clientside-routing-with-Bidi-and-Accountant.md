@@ -1,8 +1,10 @@
 ---
+layout: post
 title:  "Reagent clientside routing with Bidi and Accountant"
 date:   2016-03-01
-categories: reagent clojurescript routing
 ---
+
+# Reagent clientside routing with Bidi and Accountant
 
 So, you are building a single page application with
 [Reagent](https://reagent-project.github.io/) and want a clean client
