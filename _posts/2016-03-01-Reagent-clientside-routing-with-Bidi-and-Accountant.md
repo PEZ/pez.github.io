@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Reagent clientside routing with Bidi and Accountant"
-date:   2016-03-01
 ---
 
 # Reagent clientside routing with Bidi and Accountant
