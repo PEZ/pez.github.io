@@ -1,3 +1,5 @@
+# Reagent clientside routing with Bidi and Accountant
+
 So, you are building a single page application with
 [Reagent](https://reagent-project.github.io/) and want a clean client
 side routing in place? Here's one way, inspired by
