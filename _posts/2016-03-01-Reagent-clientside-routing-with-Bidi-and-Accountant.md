@@ -45,7 +45,7 @@ it to dare try to explain the grammar, check it up at the source. But at
 least I can describe the following structure, from the routing table
 used in the example project:
 
-``` {.cojure}
+``` {.clojure}
 (def app-routes
   ["/" {"" :index
         "section-a" {"" :section-a
@@ -233,11 +233,11 @@ parameters into the session.
 (defn ^:export init! []
   (accountant/configure-navigation!
    {:nav-handler (fn
-                   [path] ;;
-                   (let [match (bidi/match-route app-routes path) ;;
-                         current-page (:handler match) ;;
-                         route-params (:route-params match)] ;;
-                     (session/put! :route {:current-page current-page ;;
+                   [path] ;; 1
+                   (let [match (bidi/match-route app-routes path) ;; 2
+                         current-page (:handler match) ;; 3
+                         route-params (:route-params match)] ;; 4
+                     (session/put! :route {:current-page current-page ;; 5
                                            :route-params route-params})))
     :path-exists? (fn [path]
                     (boolean (bidi/match-route app-routes path)))})
@@ -245,18 +245,13 @@ parameters into the session.
   (on-js-reload))
 ```
 
--   Accountant grabs the path from the browser navigation, and ...​
-
--   ...​ Bidi matches the route, using `bidi/match-route`.
-
--   Derefed in the `[page]` component, triggering a \"dispatch\".
-
--   `:route-params` to be de-refed by any component that needs them.
-
--   Here is when the Reagent atom (`session/state` in this case) is
+1.  Accountant grabs the path from the browser navigation, and ...​
+2.  ...​ Bidi matches the route, using `bidi/match-route`.
+3.  Derefed in the `[page]` component, triggering a \"dispatch\".
+    `:route-params` to be de-refed by any component that needs them.
+4.  Here is when the Reagent atom (`session/state` in this case) is
     updated triggering a re-render in the `page` component.
-
--   This triggers the `:nav-handler`, updating the session so that the
+5.  This triggers the `:nav-handler`, updating the session so that the
     first `on-js-reload` call has something to work on.
 
 That's it! Try the app and surf it. =)
