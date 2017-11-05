@@ -49,7 +49,7 @@ it to dare try to explain the grammar, check it up at the source. But at
 least I can describe the following structure, from the routing table
 used in the example project:
 
-``` {.clojure}
+```clojure
 (def app-routes
   ["/" {"" :index
         "section-a" {"" :section-a
@@ -99,14 +99,14 @@ Defining pages
 The \"pages\" are reagent components. Duh. They are also multimethods,
 and the routing will dispatch on a simple keyword:
 
-``` {.clojure}
+```clojure
 (defmulti page-contents identity)
 ```
 
 The home page links to Section A and B. Note the use of `path-for` to
 get the paths to use for the `<a>` tags:
 
-``` {.clojure}
+```clojure
 (defmethod page-contents :index []
   [:span
    [:h1 "Routing example: Index"]
@@ -121,7 +121,7 @@ The Section A component lists a few links to \"item\" pages. This
 demonstrates how Bidi forms links for parameterized routes. Check the
 `:section-a-item` entry in the routing table.
 
-``` {.clojure}
+```clojure
 (defmethod page-contents :section-a []
   [:span
    [:h1 "Routing example: Section A"]
@@ -134,7 +134,7 @@ demonstrates how Bidi forms links for parameterized routes. Check the
 The Item component picks up the `:item-id` parameter from the
 `:route-params` entry in the session atom. (More about this below.
 
-``` {.clojure}
+```clojure
 (defmethod page-contents :a-item []
   (let [routing-data (session/get :route)
         item (get-in routing-data [:route-params :item-id])]
@@ -145,7 +145,7 @@ The Item component picks up the `:item-id` parameter from the
 
 Section B is really boring.
 
-``` {.clojure}
+```clojure
 (defmethod page-contents :section-b []
   [:span
    [:h1 "Routing example: Section B"]])
@@ -157,7 +157,7 @@ missing from the routing table. Typically, if you use the
 bidirectionality of Bidi this will only happen when the user is trying a
 mistyped link.
 
-``` {.clojure}
+```clojure
 (defmethod page-contents :four-o-four []
   "Non-existing routes go here"
   [:span
@@ -171,7 +171,7 @@ multimethod `:default` dispatching value can help with letting you know
 when you have missimplemented (or missed to implement entirely) a method
 for a *defined* route.
 
-``` {.clojure}
+```clojure
 (defmethod page-contents :default []
   "Configured routes, missing an implementation, go here"
   [:span
@@ -192,7 +192,7 @@ embedd the active page component. Here the session atom gets derefed and
 we pick out the route `:current-page` and then pick out the
 corresponding component from the `page-components` map.
 
-``` {.clojure}
+```clojure
 (defn page []
   (fn []
     (let [page (:current-page (session/get :route))]
@@ -217,7 +217,7 @@ Time to dispatch
 In order to enable the dispatching we need to get the `page` component
 into the browser's DOM:
 
-``` {.clojure}
+```clojure
 (defn on-js-reload []
   (reagent/render-component [page]
                             (. js/document (getElementById "app"))))
@@ -233,7 +233,7 @@ meet the reciprocal friend of `bidi/path-for`; `bidi/match-route`. If
 the matched route is parameterized the handler also inserts the
 parameters into the session.
 
-``` {.clojure}
+```clojure
 (defn ^:export init! []
   (accountant/configure-navigation!
    {:nav-handler (fn
@@ -278,7 +278,7 @@ set to `routing-example.server/handler`. The project's `:dev` profile is
 configured to look for code in the `dev/` folder and there you will find
 `server.clj` with the following contents:
 
-``` {.clojure}
+```clojure
 (ns routing-example.server)
 (defn handler [request]
   {:status 200
