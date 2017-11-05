@@ -1,6 +1,5 @@
 ---
-layout: post
-title:  "Reagent clientside routing with Bidi and Accountant"
+title: Reagent clientside routing with Bidi and Accountant
 ---
 
 # Reagent clientside routing with Bidi and Accountant
