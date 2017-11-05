@@ -1,3 +1,11 @@
+---
+layout: post
+title:  "Reagent clientside routing with Bidi and Accountant"
+date:   2016-03-01 16:16:01 -0600
+categories: reagent clojurescript routing
+---
+
+
 # Reagent clientside routing with Bidi and Accountant
 
 So, you are building a single page application with
@@ -37,7 +45,7 @@ project](https://github.com/PEZ/reagent-bidi-accountant-example) showing
 the recipe at work. Many of you will want to skip reading the rest of
 this blog post and just study the example.
 
-Setting up routes {#_setting_up_routes}
+Setting up routes
 =================
 
 Bidi uses data structures to define the routing table. I am too new to
@@ -89,7 +97,7 @@ The routing table and most of the code in the example project you will
 find in
 [`src/routing-example/core.cljs`](https://github.com/PEZ/reagent-bidi-accountant-example/blob/master/src/routing_example/core.cljs).
 
-Defining pages {#_defining_pages}
+Defining pages
 ==============
 
 The \"pages\" are reagent components. Duh. They are also multimethods,
@@ -180,7 +188,7 @@ but I never created it."]])
 Ideally your CI pipeline can use this to catch this error before it hits
 your users.
 
-The page template component {#_the_page_template_component}
+The page template component
 ===========================
 
 All the pages in the silly app has the same header and footer, and then
@@ -207,7 +215,7 @@ corresponding component from the `page-components` map.
 -   This will \"dispatch\" a new \"page\" when the session reagent/atom
     changes.
 
-Time to dispatch {#_time_to_dispatch}
+Time to dispatch
 ================
 
 In order to enable the dispatching we need to get the `page` component
@@ -266,7 +274,7 @@ you have crashed it in a way that needs refreshing the browser window.
 If you are not on the `:index` page you'll get Figwheel's 404 page.
 That's why we need...​
 
-Loading the app from \"outside\" the root path {#_loading_the_app_from_outside_the_root_path}
+Loading the app from \"outside\" the root path
 ==============================================
 
 Before Accountant has taken responsibility for the browser navigation,
@@ -297,7 +305,7 @@ if you try this**:
     and script resources. Make those absolute and save yourself some of
     that precious hair on your head.
 
-Room for improvement {#_room_for_improvement}
+Room for improvement
 ====================
 
 **Refreshing the browser resets the app.** Since refreshing means
@@ -312,7 +320,7 @@ Accountant supporting that we could configure things to use \#-prefixed
 paths for development and (if the business allows) HTML5 pushstate for
 productuon.
 
-Feedback please, and PRs! {#_feedback_please_and_prs}
+Feedback please, and PRs!
 =========================
 
 I am a clojure and clojurescript noob. Please help me on my journey with
