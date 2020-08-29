@@ -40,11 +40,13 @@ defaultMarkdownHandler = "pandoc"
 unsafe = true
 ```
 
+(I dare using unsafe html settings, because I control all text being published on the site, bit thanks for your concerns! 😍)
+
 There is one more litte bit of advice I might give you. From what I understand there is no way to instruct Vercel to use different build commands for different branch deploys. This makes it a bit scary to change it, while experimenting with deploying build scripts and see if they work on a remote machine out there. What I did was to first change the build command in Vercel to `sh vercel-build.sh`. Then I deployed a `vercel-build.sh` containing only:
 
 ```sh
 npm run build
 ```
 
-And deployed that on `master`. Then I could experiment on a development branch, and merge back once things where working. (Which took me a while, as I've already said, but that hopefully now will take you less time. 😀)
+And deployed that on `master`. Then I could experiment on a development branch, and merge back once things where working. (Which took me a while, as I've already said, but that hopefully now will take you less time. ♥️)
 
