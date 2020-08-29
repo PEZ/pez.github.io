@@ -4,7 +4,7 @@ title: Using Pandoc Markdown with Hugo on Vercel
 
 In a not-for-monetary-profit project of mine, I use [Pandoc](https://pandoc.org) for converting Google Docs documents to markdown. I then publish these on a website using [Hugo](https://gohugo.io) and [Vercel](https://vercel.com). 
 
-Pandoc and Hugo both support several markdown flavours, but they only have one in common, you guessed it: Pandoc's. That is all good, we just tell Hugo to use the Pandoc markdown engine, right? However, Hugo doesn't have a Pandoc markdown parser of its own, it relies on that the Pandoc binaries are installed. Which they aren't on Vercel. (They are if you use Netlify, so if you do you can skip reading now. 😀)
+Pandoc and Hugo both support several markdown flavours, but they only have one in common, you guessed it: Pandoc's. That is all good, we just tell Hugo to use the Pandoc markdown engine, right? However, Hugo doesn't have a Pandoc markdown parser of its own, it relies on that the Pandoc binaries are installed. Which they aren't on Vercel. (They are if you use [Netlify](https://www.netlify.com), so if you do you can skip reading now. 😀)
 
 It took me a little experimentation to get it to work so writing this down her for anyone else to save some times. I started with contacting Vercel's wonderful support. Despite me being on the free tier they give me of their time, in a very timely manner. They told me that I can use anything for building my site and adviced me to configure the build command (for which I had left the default `npm run build`) to `sh build.sh` or something and then install dependencies before running `npm run build`. They also told me that the build servers are using Centos.
 
